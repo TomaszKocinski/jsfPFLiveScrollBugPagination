@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+   <title>PrimeFaces Hello World Example</title>
+</h:head>
+
+<h:body>
+   <h:form >
+      <p:dataTable var="live" value="#{LiveLazyModel}" rows="10" lazy="true"
+                   scrollRows="10" liveScroll="true" scrollHeight="90%" scrollable="true"
+                   style="width: 1000px">
+         <p:column headerText="Id">
+            <h:outputText value="#{live.id}" id="idlive"/>
+         </p:column>
+         <p:column headerText=".txt" style="width: 80px" exportable="false">
+            <h:commandLink>
+               <h:outputText value="download"/>
+               <f:param name="liveId" value="#{live.id}" />
+               <f:setPropertyActionListener value="#{live}" target="#{LiveLazyModel.selectedRow}"/>
+               <p:fileDownload value="#{LiveLazyModel.liveStreamedContent}"/>
+            </h:commandLink>
+         </p:column>
+      </p:dataTable>
+   </h:form>
+   paginatorTemplate="{PreviousPageLink} {NextPageLink}" paginator="true"
+   <br/>
+   scrollRows="10" liveScroll="true" scrollHeight="90%" scrollable="true"
+</h:body>
+</html>
